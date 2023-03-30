@@ -1,49 +1,56 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <math.h>
+#define true 1
+#define false 0
 
-int isPrime(int a)
+int isPrime(int n)
 {
-    if (a == 1) return 0;
-    if (a == 2) return 1;
-    for (int i = 2; i*i <= a; i++)
-    {
-        if (a % i == 0) return 0;
-    }
-    return 1;
+	if(n<2)
+		return false;
+	for(int i=2; i<=sqrt(n); i++)
+	{
+		if(n%i == 0)
+			return false;
+	}
+	return true;
+}
+
+void solve(int n)
+{
+	int prime[n+1];
+	for(int i=0; i<n+1; i++)
+		prime[i] = 1;
+	prime[0] = prime[1] = 0;
+	for(int i=2; i<=n; i++)
+	{
+		if(prime[i])
+		{
+			for(int j=i*i; j<=n; j+=i)
+				prime[j] = 0;
+		}
+	}
+	
+	int a[1000];
+	int index=0;
+	for(int i=2; i<=n; i++)
+	{
+		if(prime[i])
+			a[index++] = i;
+	}
+	for(int i=0; i<index-3; i++)
+	{
+		int s = a[i] + a[i+1] + a[i+2] + a[i+3];
+		if(s <= n && isPrime(s))
+			printf("%d\n%d\n%d\n%d\n", a[i], a[i+1], a[i+2], a[i+3]);
+	}
 }
 
 int main()
 {
-    int N, k;
-    int a[100];
-    scanf("%d%d", &N, &k);
-    
-    int sum = 0;
-    int count = 0;
-    for (int i = 2; i <= N; i++) 
-	{
-        if (isPrime(i))
-		{
-            a[count] = i;
-            count++;          
-        }
-    }
-    for(int i=0; i<count-k; i++)
-    {
-		for (int j=0; j<k; j++)
-   		{
-   			sum += a[i+j];
-			 				
-		}
-		  if(sum<=N && isPrime(sum))
-			{
-				
-				for (int j=0; j<k; j++)
-		   		{
-		   			printf("%d ", a[j+i]);
-				}
-                printf("\n");
-			}			
-	}
-         
-    return 0;
+	int n;
+	scanf("%d", &n);
+	solve(n);
+
+	return 0;
 }
+
