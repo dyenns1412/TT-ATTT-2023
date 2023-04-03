@@ -48,7 +48,9 @@ void CapNhat (int x[], int y[])
 		x[i] = y[i];
 }
 
-void chia (int x[], int y[], int nguyen[], int du[])
+
+// thực hiện phép chia 2 đa thức. Thương được lưu vào nguyen[], dư lưu vào du[]
+void chia (int x[], int y[], int nguyen[], int du[]) 
 {		
 	KhoiTao(nguyen, 0);
 	KhoiTao(du, 0);	
@@ -56,6 +58,7 @@ void chia (int x[], int y[], int nguyen[], int du[])
     	du[i] = x[i];
     int deg_x = bac;
 	int deg_y = bac;		
+	// tìm bậc của 2 đa thức. bỏ qua mọi bậc nếu có hệ số =0
 	while(x[deg_x] == 0)
 		deg_x--;
 	while(y[deg_y] == 0)
@@ -67,7 +70,12 @@ void chia (int x[], int y[], int nguyen[], int du[])
     	for(int i=deg_y; i>=0; i--)
     	{
     		if(y[i] == 1)
-    			du[i + deg_ng] = (du[i + deg_ng] + 1) % 2;
+    			du[i + deg_ng] = (du[i + deg_ng] + 1) % 2; //  cập nhật các hệ số của đa thức dư du 
+				//với kết quả của phép toán modulo 2 của tổng du[i + deg_ng] và 1 nếu hệ số của y tại chỉ số i bằng 1
+
+				//Nếu y[i]bằng 1, giá trị tại du[i + deg_ng]được chuyển đổi (0 trở thành 1 và 1 trở thành 0) 
+				//bằng cách sử dụng biểu thức (du[i + deg_ng] + 1) % 2và giá trị kết quả được gán lại cho du[i + deg_ng]. 
+				//Nếu y[i]không bằng 1, không có gì xảy ra với du[i + deg_ng].
 		}
 		while(du[deg_x] == 0)
 			deg_x--;
@@ -78,19 +86,19 @@ void nhan (int x[], int y[], int kq[])
 {	
 	int deg_x = bac;
 	int deg_y = bac;		
-	while(x[deg_x] == 0)
+	while(x[deg_x] == 0)  // xác định bậc của đa thức x và y. Nếu hệ số =0 -> bậc --
 		deg_x--;
 	while(y[deg_y] == 0)
 		deg_y--;
     KhoiTao(kq, 0);
     while(deg_y >= 0)
     {
-    	if(y[deg_y] != 0)
+    	if(y[deg_y] != 0)     // nhân từng hệ số khác 0 của y cho x
     	{
     		for(int i=deg_x; i>=0; i--)
     		{
     			if(x[i] == 1)
-    				kq[i + deg_y] = (kq[i + deg_y] + 1) % 2;
+    				kq[i + deg_y] = (kq[i + deg_y] + 1) % 2;  // thực hiện phép cộng XOR
 			}
 		}
 		deg_y--;
@@ -106,7 +114,7 @@ void cong (int x[], int y[], int kq[])
 {	
 	int deg_x = bac;
 	int deg_y = bac;		
-	while(x[deg_x] == 0)
+	while(x[deg_x] == 0) // xác định bậc cao nhất của đa thức
 		deg_x--;
 	while(y[deg_y] == 0)
 		deg_y--;
@@ -174,4 +182,3 @@ int main()
 
 	return 0;
 }
-
