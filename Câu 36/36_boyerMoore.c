@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define true 1
-#define false 0
 #define MAX 1000
 
 int min(int a, int b)
@@ -54,11 +52,11 @@ void BoyerMooreSearch(char *T, char *P)
 	int m = strlen(P);	
 	int i = m - 1;
 	int j = m - 1;	
-	int flag = 0;	
+	int check = 0;	
 	
 	while(i <= strlen(T))
 	{
-		if(T[i] != P[j])
+		if(T[i] != P[j])  //inew=i+m-min(j,1+L(T[i])), jnew=m-1
 		{
 			i = i + m - min(j, 1 + lastOccurrence(P, T[i]));
 			j = m - 1;
@@ -68,15 +66,15 @@ void BoyerMooreSearch(char *T, char *P)
 			if(j == 0)
 			{			
 				printf("\nVi tri xuat hien cua P trong T la %d", i);
-				flag = 1;
+				check = 1;
 				break;
 			}
-			i--;
+			i--;  // Nếu khớp nhau thì i = i-1,j=j-1
 			j--;
 		}
 	}
-	if(flag == 0) 
-		printf("\nNot found!");		
+	if(check == 0) 
+		printf("\nKhong tim thay!");		
 }
 
 int main()
