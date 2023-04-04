@@ -40,12 +40,15 @@ void failureFunction(char *P, int *F)
 int KMPSearch (char *T, char *P, int *F)
 {
 	int i = 0, j = 0;
+	
 	while(i < strlen(T))
 	{
-		if(T[i+j] == P[j]) // nếu khớp nhau thì tăng j
+		int inew=i+j;
+		if(T[inew] == P[j]) // nếu khớp nhau thì tăng j
 		{
+			inew++;
 			j++;
-			if(j == strlen(P)) // kiểm tra toàn bộ chuỗi đã khớp chưa
+			if(j == strlen(P)) // j tăng đến hết P. kiểm tra toàn bộ chuỗi đã khớp chưa
 				return i;
 		}
 		else
@@ -55,9 +58,9 @@ int KMPSearch (char *T, char *P, int *F)
 				i++;
 				j = 0;
 			}
-			else // nếu F[j] khác 0
+			else // nếu F[j] khác 0.cập nhật gtri mới của i và j
 			{
-				i = i + j - F[i];
+				i = i + j - F[j];
 				j = F[j];
 			}
 		}			
