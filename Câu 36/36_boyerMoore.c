@@ -17,13 +17,13 @@ int lastOccurrence(char *P, char x)
 	}
 	return -1;
 }
-
+// kiểm tra kí tự đã xuất hiện trước đó hay chưa.(kiểm tra phần tử trùng lặp
 int isMatch(char *T, int x)
 {
 	for(int i=0; i<x; i++)
 	{
 		if(T[i] == T[x])
-			return 0;
+			return 0;// tránh trường hợp in ra 2 kí tự giống nhau.Các kí tự chỉ được in ra 1 lần duy nhất
 	}
 	return 1;
 }
