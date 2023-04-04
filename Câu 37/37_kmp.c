@@ -26,10 +26,12 @@ void failureFunction(char *P, int *F)
 	}
 	
 	printf("\nFailure function\n");
+	
 	printf("%5s", "P");	
 	for (int i=0; i<strlen(P); i++)
-		printf("%5s", P[i]);
+		printf("%5c", P[i]);
 	printf("\n");
+	
 	printf("%5s", "j");	
 	for (int i=0; i<strlen(P); i++)
 		printf("%5d", i);
