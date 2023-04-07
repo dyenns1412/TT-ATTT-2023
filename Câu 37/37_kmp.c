@@ -2,27 +2,31 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#define true 1
-#define false 0
 #define MAX 1000
 
 void failureFunction(char *P, int *F)
 {
-	int i = 0;
+	int i = 0; 
 	int j = 2;
 	F[0] = -1;
 	F[1] = 0;
 	
 	while(j < strlen(P))
 	{
-		if(P[i] == P[j-1])  // tiền tố = hậu tố
+		if(P[j-1] == P[i])  //  hậu tố = tiền tố
 		{
 			F[j] = i + 1;// F[j]= độ dài của tiền tố +1 
 			i++;  // tăng i và j lên 1đv để tiếp tục so sánh
 			j++;
 		}
-		else
+		else if(i>0) // tại j đang xét mà P[j-1] != P[i] voi i>0 thi giam i 1dv
+		    i--;
+		else  // khoong trung va i=0 thi 
+		{
 			F[j++] = 0;
+			i = 0;
+		}
+			
 	}
 	
 	printf("\nFailure function\n");
@@ -97,4 +101,3 @@ int main()
 	T = "aaaaaaaaaa"
 	P = "baaaa"
 */
-
