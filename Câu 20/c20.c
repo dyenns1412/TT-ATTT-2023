@@ -1,41 +1,34 @@
-#include<stdio.h>
-#include<math.h>
+#include <stdio.h>
+#include <math.h>
 
-int gcd(int a, int b) 
+int gcd(int a, int b)
 {
-    int tmp;
-    while(b != 0) {
-        tmp = a % b;
-        a = b;
-        b = tmp;
+    int temp;
+    while(b!=0)
+    {
+        temp=b;
+        b=a%b;
+        a=temp;
     }
     return a;
 }
 
-int main ()
-{  //(0<M,N, D < 1000).
-    int m, n, d;
-    while (m>=n || m <= 0 || n<=0 || m >= 1000 || n>=1000){
-        printf("Nhap 0 < M < N < 1000\n");
-        scanf("%d %d", &m, &n);
-    }
-
-    while (d<=0 || d>=1000)
+int main()
+{
+    int i,j;
+    int m,n,d;
+    printf("Nhap M=");
+    scanf("%d",&m);
+    printf("Nhap N=");
+    scanf("%d",&n);
+    printf("Nhap D=");
+    scanf("%d",&d);
+    for(i=m ;i<n;i++)
     {
-        printf("Nhap 0 < D< 1000\n");
-        scanf("%d", &d);
-    }
-
-    for( int i=m; i<n;i++)
-    {
-        for( int j=i+1; j<n+1; j++)
+        for(j=i;j<=n;j++)
         {
-            int UCLN = gcd(i,j);
-            if(UCLN==d)
-            { 
-                printf("\n%d va %d\n%d va %d\n",i,j,j,i);
-            }
+
+            if(gcd(i,j)==d) printf("(%d;%d)\t",i,j);
         }
     }
-     return 0;
 }
