@@ -1,34 +1,28 @@
-#include<stdio.h>
-#include<math.h>
+#include <stdio.h>
+#include <math.h>
 
-
-void strongNumber (int n)
+void solve(int n)
 {
-    
-    int p[n+1];
-    for (int i=0;i<=n;i++)
+    int prime[n+1];
+    for(int i=0; i<=n; i++)
+        prime[i] = 1;
+    prime[0] = prime[1] = 0;
+    for(int i=2; i<=sqrt(n); i++)
     {
-        p[i]=1;
-        p[0]=p[1]=0;
-    }
-    for (int i=2; i<=sqrt(n);i++)
-    {
-        if(p[i])
+        if(prime[i])
         {
-            for(int j=i*i;j<=n;j+=i)
-            {
-                p[j]=0;
-            }
+            for(int j=ii; j<=n; j+=i)
+                prime[j] = 0;
         }
- 
     }
-    for (int i=2; i<n;i++)
+
+    for(int i=2; i<n; i++)
     {
-        for(int j=2; j<=i;j++)
+        for(int j=2; j<=i; j++)
         {
-            if(p[j]==1 && i%j==0 && i%(j*j)==0)
+            if(prime[j] && i%j==0 && i%(jj)==0)
             {
-                printf("%d chia het cho %d va %d^2\n",i,j,j);
+                printf("%d\n", i);
                 break;
             }
         }
@@ -37,9 +31,9 @@ void strongNumber (int n)
 
 int main()
 {
-    int n, check=0;
-    scanf("%d",&n);
-    strongNumber(n);
-    
+    int n;
+    scanf("%d", &n);
+    solve(n);
+
     return 0;
 }
