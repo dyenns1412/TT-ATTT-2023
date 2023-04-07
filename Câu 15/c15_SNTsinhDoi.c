@@ -1,35 +1,24 @@
-#include<stdio.h>
+#include <stdio.h>
 #include<math.h>
 
-// 2 SNT sinh đôi là 2 SNT hơn kém nhau 2 đơn vị
-int isPrime(int a)
+int isPrime(int n)
 {
-    if (a == 1) return 0;
-    if (a == 2) return 1;
-    for (int i = 2; i*i <= a; i++)
+    int i;
+    if(n<=1) return 0;
+    for (i=2;i<=sqrt(n);i++)
     {
-        if (a % i == 0) return 0;
+        if(n%i==0) return 0;
     }
     return 1;
 }
 
-int main()
+int main ()
 {
-    int N, A[1000], k = 0;
-    scanf("%d", &N);
-    for (int i = 2; i <= N; i++)
+    int n,i;
+    printf("Nhap n=");
+    scanf("%d",&n);
+    for (i=2;i<=(n-2);i++)
     {
-        if (isPrime(i) == 1)
-        {
-            A[k] = i;
-            k++;
-        }
-        
+        if(isPrime(i)==1&&isPrime(i+2)==1) printf("%d\t%d\n",i,i+2);
     }
-    for (int i = 0; i < k-1; i++)
-    {
-        if (A[i+1] - A[i] == 2) printf("%d %d\n", A[i], A[i+1]);
-    }
-    
-    return 0;
 }
