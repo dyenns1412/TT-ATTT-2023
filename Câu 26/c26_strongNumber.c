@@ -23,7 +23,7 @@ int main()
         {
             if(isPrime(j)==1)
             {
-                if(i%j==0 && i%(jj)==0)
+                if(i%j==0 && i%(j*j)==0)
                 {
                      printf("\n%d ",i);
                     //printf("\n%d chia het cho %d va %d ^ 2",i,j,j);
